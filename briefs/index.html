@@ -1,0 +1,62 @@
+<html>
+    <head>
+        <title>Custom UI</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/site.css"/>
+        <script src="js/jquery.js"></script>
+        <script src="js/d3.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">             
+    </head>
+    <body>
+        <div id="content" class="container">
+            <div id="patternbuilder" class="row">
+                <div id="pattern" class="col-md-9">
+                </div>
+                <div id="controls" class="col-md-3">
+                    <div id="intialsizing">
+                        <p class="buildertitle">Choose size</p>
+                        <button>X-Small</button> 
+                        <button>Small</button> 
+                        <button>Medium</button> 
+                        <button>Large</button> 
+                        <button>X-Large</button>
+                    </div>
+                    <div id="tweakmeasures">
+                        <p class="buildertitle">Set Custom Sizes</p>
+                        <div class="measure">
+                            <p class="measuretitle">Hips Circumference</p>
+                            <input type="range" min="74" max="130" value="96" class="slider" id="hips">
+                            <span id="hipsvalue" class="measurevalue"></span>
+                        </div>
+                        <div class="measure">
+                            <p class="measuretitle">Waist To Upper Leg</p>
+                            <input type="range" min="25" max="35" value="30" class="slider" id="waisttoleg">
+                            <span id="waisttolegvalue" class="measurevalue"></span>
+                        </div>
+                        <div class="measure">
+                            <p class="measuretitle">Waist To Hips</p>
+                            <input type="range" min="11" max="16" value="13" class="slider" id="waisttohips"><span id="waisttohipsvalue" class="measurevalue"></span>
+                        </div>
+                        <div class="measure">
+                            <p class="measuretitle">Upper Leg Circumference</p>
+                            <input type="range" min="52" max="67" value="59" class="slider" id="upperleg"><span id="upperlegvalue" class="measurevalue"></span>
+                        </div>
+                        <div class="measure">
+                            <p class="measuretitle">Measurements to send</p>
+                            <textarea id="copymeasure" rows="3" cols="32" disabled></textarea>
+                        </div>
+                    </div>                      
+                </div>
+            </div>
+            <div class="row">
+                <div id="temppattern" class="col-md-1">
+                </div>
+            </div>
+        </div>
+        <script src="js/site.js"></script>    
+    </body>
+</html>

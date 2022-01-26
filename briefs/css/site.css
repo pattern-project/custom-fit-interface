@@ -1,0 +1,50 @@
+body {
+	font-family: 'Roboto', sans-serif;
+}
+
+#pattern {
+	margin-top:30px;
+	fill:none;
+	stroke-width:0.5px;
+	stroke:#ccc;
+}
+
+#pattern .grouppattern {
+	fill:none;
+	stroke-width:2px;
+	stroke:#0024ff;
+}
+
+#temppattern {
+	display:none;
+}
+
+#patternbuilder {
+	margin-top:30px;
+}
+
+.buildertitle {
+	font-size:2em;
+}
+
+.measuretitle {
+	font-size:1.5em;
+}
+
+.measure {
+	margin-top:30px;
+}
+
+.measurevalue {
+	padding-left:15px;
+	font-size:1.5em;
+}
+
+button {
+	color:#ffffff;
+	background-color:#0024ff;
+	border-width:0px;
+	font-size:1.5em;
+	border-radius:5px;
+	margin:5px;
+}
