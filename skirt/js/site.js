@@ -20,8 +20,7 @@ function addBaseSize(sizes,count){
 			}
 		});	
 	} else {
-		//updatePattern();
-		console.log('started');
+		updatePattern();
 	}		
 }
 
@@ -196,23 +195,24 @@ let sizes = [{
       "skirtLength":700,
       "bellyLineDepth":100,
       "bellyWidth":1000,
+    },
+    {
+      "lowerHipLine": 1400,
+      "hipLineDepth": 250,
+      "waist": 1400,
+      "skirtLength":900,
+      "bellyLineDepth":150,
+      "bellyWidth":1400,
     }];
 
 //let sizes = [];
 
 let transform = {'string':'','x':0,'y':0};
 let maxHeight = 0;
-$('#tweakmeasures').hide();
 $('#downloadinfo').hide();
 
 addBaseSize(sizes,0);
 initSliders();
-
-$('.sizebutton').on('click',function(){
-	updatePattern();
-	$('#intialsizing').hide();
-	$('#tweakmeasures').show();
-});
 
 $('.downloadPDF').on('click',function(){
 	let pdfSize = $(this).attr('attr-size');
