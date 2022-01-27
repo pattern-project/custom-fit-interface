@@ -1,0 +1,80 @@
+<html>
+    <head>
+        <title>Custom UI</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/site.css"/>
+        <script src="js/jquery.js"></script>
+        <script src="js/d3.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">             
+    </head>
+    <body>
+        <div id="content" class="container">
+            <div id="patternbuilder" class="row">
+                <div id="pattern" class="col-md-9">
+                </div>
+                <div id="controls" class="col-md-3">
+                    <div id="intialsizing">
+                        <p class="buildertitle">Choose size</p>
+                        <button class="sizebutton">X-Small</button> 
+                        <button class="sizebutton">Small</button> 
+                        <button class="sizebutton">Medium</button> 
+                        <button class="sizebutton">Large</button> 
+                        <button class="sizebutton">X-Large</button>
+                    </div>
+                    <div id="tweakmeasures">
+                        <p class="buildertitle">Set Custom Sizes</p>
+                      
+                        <div class="measure">
+                            <p class="measuretitle">Waistband Width</p>
+                            <input type="range" min="60" max="120" value="85" class="slider" id="waist">
+                            <span id="waistvalue" class="measurevalue"></span>
+                        </div>
+                        <div class="measure">
+                            <p class="measuretitle">Hips Circumference</p>
+                            <input type="range" min="85" max="140" value="102" class="slider" id="lowerHipLine">
+                            <span id="lowerHipLinevalue" class="measurevalue"></span>
+                        </div>
+                        <div class="measure">
+                            <p class="measuretitle">Waistband To Hips</p>
+                            <input type="range" min="5" max="30" value="20" class="slider" id="hipLineDepth"><span id="hipLineDepthvalue" class="measurevalue"></span>
+                        </div>
+                        <div class="measure">
+                            <p class="measuretitle">Belly</p>
+                            <input type="range" min="70" max="140" value="92" class="slider" id="bellyWidth"><span id="bellyWidthvalue" class="measurevalue"></span>
+                        </div>
+                        <div class="measure">
+                            <p class="measuretitle">Waistband to Belly</p>
+                            <input type="range" min="1" max="30" value="10" class="slider" id="bellyLineDepth"><span id="bellyLineDepthvalue" class="measurevalue"></span>
+                        </div>
+                        <div class="measure">
+                            <p class="measuretitle">Skirt Length</p>
+                            <input type="range" min="50" max="90" value="70" class="slider" id="skirtLength"><span id="skirtLengthvalue" class="measurevalue"></span>
+                        </div>
+                        <div id="downloadbuttons" class="infocontainer">
+                            <p id="downloadlink"></p>
+                            <button class="downloadPDF" attr-size="a4">Create A4 PDF</button> 
+                            <button class="downloadPDF" attr-size="letter">Create Letter PDF</button>
+                            <button class="downloadPDF" attr-size="a0">Create A0 PDF</button>  
+                        </div>
+                        <div id="downloadinfo" class="infocontainer">
+                            <p>Generating PDF Pattern...</p>  
+                        </div>
+                    </div>                      
+                </div>
+            </div>
+            <div class="row">
+                <div id="temppattern" class="col-md-1">
+                </div>
+            </div>
+            <div class="row">
+                <div id="pdfpattern" class="col-md-1">
+                </div>
+            </div>
+        </div>
+        <script src="js/site.js"></script>    
+    </body>
+</html>
