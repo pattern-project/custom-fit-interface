@@ -1,90 +1,65 @@
+//example URL: https://hw8kq5s8a5.execute-api.us-west-2.amazonaws.com/customPPSkirt?m-naturalwaist=780&m-waist=800&m-bellyWidth=900&m-lowerHipLine=1000&m-bellyLineDepth=210&m-hipLineDepth=200&m-skirtLength=800&m-hipsbackhalf=550&m-swayback=0&part=pocket&format=production&id=custom_skirt
+
+
+// Function: addQueryParams(url: string, params: object): string
+// This function takes a URL and a JSON object of key-value pairs, joins them as query string parameters, and returns the new URL with the parameters appended.
+
+function addQueryParams(url, params) {
+	  const queryParams = Object.entries(params)
+		    .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
+		    .join('&');
+	  const separator = url.includes('?') ? '&' : '?';
+	  return `${url}${separator}${queryParams}`;
+}
+
 function addBaseSize(sizes,count){
-	let measurement
+	let params
 	if(sizes.length>0){
-		measurement = sizes.pop();
-		console.log(measurement);
+		params = sizes.pop();
+		console.log(params);
 		let id = 'pattern_'+count+'_';
-		let data = {
-				measurement,
-				id
-		}
+
+		params['part']='front'
+		params['format']='web embed'
+		params['id']=id
+
+		const baseURL = 'https://hw8kq5s8a5.execute-api.us-west-2.amazonaws.com/customPPSkirt';
+		const queryURL = addQueryParams(baseURL, params)
 
 		$.ajax({
-			url: "https://hw8kq5s8a5.execute-api.us-west-2.amazonaws.com/customPPSkirt",
-			type: "POST",
-	  		data: JSON.stringify(data),
+			url: queryURL,
+			type: "GET",
 			dataType: 'text',
 			success: function(result){
-				result = JSON.parse(result);
 				combineSVGS(result,sizes,count);
 			}
-		});	
+		});
 	} else {
 		updatePattern();
 	}		
 }
 
-function getPattern(measurement){
-	console.log(measurement);
-	let id = 'pattern_user_';
-	let data = {
-			measurement,
-			id
+function getPattern(params){
+
+	for (key in params){
+		key = 'm-'+key
 	}
+
+	params['part']='front'
+	params['format']='web embed'
+	params['id']='custom_skirt'
+
+	const baseURL = 'https://hw8kq5s8a5.execute-api.us-west-2.amazonaws.com/customPPSkirt';
+	const queryURL = addQueryParams(baseURL, params)
+
 	$.ajax({
-		url: "https://hw8kq5s8a5.execute-api.us-west-2.amazonaws.com/customPPSkirt",
-		type: "POST",
-  		data: JSON.stringify(data),
+		url: queryURL,
+		type: "GET",
 		dataType: 'text',
 		success: function(result){
-			result = JSON.parse(result);
 			addPattern(result);
 		}
 	});	
-}
-
-function getPDFPattern(measurement,size){
-	console.log(measurement);
-	let id = 'pattern_user_';
-	let data = {
-			measurement,
-			id,
-			pdf:true
-	}
-	$.ajax({
-		url: "https://hw8kq5s8a5.execute-api.us-west-2.amazonaws.com/customPPSkirt",
-		type: "POST",
-  		data: JSON.stringify(data),
-		dataType: 'text',
-		success: function(result){
-			result = JSON.parse(result);
-			//$('#pdfpattern').html(result);
-			//$('#pdfpattern').html($('#pdfpattern').html());
-			generatePDF(result,size);
-		}
-	});	
-}
-
-function generatePDF(result,size){
-	let data = {
-		'svg':result,
-		'format':'pdf',
-		'size':size,
-		'url':'https://www.pattern-project.com/',
-		'design':'Pattern Project Skirt'
-	}
-	$.ajax({
-		url: "https://tiler.freesewing.org/api",
-		type: "POST",
-  		data: JSON.stringify(data),
-  		contentType:"application/json; charset=utf-8",
-		success: function(result){
-			$('#downloadinfo').hide();
-			$('#downloadbuttons').show();
-			$('#downloadlink').html('<a href="'+result.link+'">Download PDF Pattern</a>');
-			window.open(result.link, '_blank');
-		}
-	});
 }
 
 function combineSVGS(svg,sizes,count){
@@ -140,14 +115,29 @@ function initSliders(){
 function getMeasurements(){
 	let measurements = 
     {
-      "lowerHipLine":$('#lowerHipLine').val()*10,
-      "hipLineDepth":$('#hipLineDepth').val()*10,
-      "waist":$('#waist').val()*10,
-      "skirtLength":$('#skirtLength').val()*10,
-      "bellyLineDepth":$('#bellyLineDepth').val()*10,
-      "bellyWidth":$('#bellyWidth').val()*10,
-    }  
-
+      "m-lowerHipLine":$('#lowerHipLine').val()*10,
+      "m-hipLineDepth":$('#hipLineDepth').val()*10,
+      "m-waist":$('#waist').val()*10,
+      "m-skirtLength":$('#skirtLength').val()*10,
+      "m-bellyLineDepth":$('#bellyLineDepth').val()*10,
+      "m-bellyWidth":$('#bellyWidth').val()*10,
+      "m-naturalwaist":$('#naturalwaist').val()*10,
+      "m-hipsbackhalf":$('#hipsbackhalf').val()*10,
+      "m-swayback":$('#swayback').val()*10,
+    }
+    /*
+    let measurements = 
+    {
+      "m-lowerHipLine": 900,
+      "m-hipLineDepth": 200,
+      "m-waist": 700,
+      "m-naturalwaist":700,
+      "m-hipsbackhalf":450,
+      "m-swayback":0,                                                
+      "m-skirtLength":700,
+      "m-bellyLineDepth":100,
+      "m-bellyWidth":850
+     }*/
 	return measurements
 }
 
@@ -157,7 +147,7 @@ function updatePattern(){
 }	
 
 function addPattern(svg){
-	let id = 'pattern_user_'
+	let id = 'custom_skirt'
 	let base = $('#'+id+'container').remove();
 	$('#temppattern').html(svg);
 
@@ -173,13 +163,18 @@ function addPattern(svg){
 }
 
 let sizes = [{
-      "lowerHipLine": 900,
-      "hipLineDepth": 200,
-      "waist": 700,
-      "skirtLength":700,
-      "bellyLineDepth":100,
-      "bellyWidth":850,
-    },
+      "m-lowerHipLine": 1360,
+      "m-hipLineDepth": 200,
+      "m-waist": 990,
+      "m-naturalwaist":990,
+      "m-hipsbackhalf":580,
+      "m-swayback":0,                                                
+      "m-skirtLength":700,
+      "m-bellyLineDepth":100,
+      "m-bellyWidth":1000,
+    }]
+
+  let sizeold =  [
     {
       "lowerHipLine": 1020,
       "hipLineDepth": 200,
@@ -214,6 +209,7 @@ $('#downloadinfo').hide();
 addBaseSize(sizes,0);
 initSliders();
 
+/*
 $('.downloadPDF').on('click',function(){
 	let pdfSize = $(this).attr('attr-size');
 	console.log(pdfSize);
@@ -221,4 +217,5 @@ $('.downloadPDF').on('click',function(){
 	getPDFPattern(measurements,pdfSize);
 	$('#downloadbuttons').hide();
 	$('#downloadinfo').show();
-});
+});*/
+

@@ -14,16 +14,31 @@
     <body>
         <div id="content" class="container">
             <div id="patternbuilder" class="row">
-                <div id="pattern" class="col-md-9">
+                <div class="col-md-9">
+                    <div id="pattern">
+                        <p class="buildertitle">Parametric Pattern</p>
+                    </div>
+                    <div id="layplan">
+                        <p class="buildertitle">Example Layplan</p>
+                        <img src="layplan.png" width="100%"/>
+                    </div>
                 </div>
                 <div id="controls" class="col-md-3">
                     <div id="tweakmeasures">
-                        <p class="buildertitle">Set Custom Sizes</p>
-                      
+                        <p class="buildertitle">Measurements</p>
                         <div class="measure">
-                            <p class="measuretitle">Waistband Width</p>
+                            <p class="measuretitle">Natural Waist</p>
+                            <input type="range" min="60" max="120" value="85" class="slider" id="naturalwaist">
+                            <span id="naturalwaistvalue" class="measurevalue"></span>
+                        </div>
+                        <div class="measure">
+                            <p class="measuretitle">Preferred Waist</p>
                             <input type="range" min="60" max="120" value="85" class="slider" id="waist">
                             <span id="waistvalue" class="measurevalue"></span>
+                        </div>
+                        <div class="measure">
+                            <p class="measuretitle">Belly</p>
+                            <input type="range" min="70" max="140" value="92" class="slider" id="bellyWidth"><span id="bellyWidthvalue" class="measurevalue"></span>
                         </div>
                         <div class="measure">
                             <p class="measuretitle">Hips Circumference</p>
@@ -31,29 +46,25 @@
                             <span id="lowerHipLinevalue" class="measurevalue"></span>
                         </div>
                         <div class="measure">
-                            <p class="measuretitle">Waistband To Hips</p>
+                            <p class="measuretitle">Hips Back Half</p>
+                            <input type="range" min="85" max="140" value="102" class="slider" id="hipsbackhalf">
+                            <span id="hipsbackhalfvalue" class="measurevalue"></span>
+                        </div>
+                        <div class="measure">
+                            <p class="measuretitle">Preferred Waist to Belly</p>
+                            <input type="range" min="1" max="30" value="10" class="slider" id="bellyLineDepth"><span id="bellyLineDepthvalue" class="measurevalue"></span>
+                        </div>
+                        <div class="measure">
+                            <p class="measuretitle">Preferred Waist to Hips</p>
                             <input type="range" min="5" max="30" value="20" class="slider" id="hipLineDepth"><span id="hipLineDepthvalue" class="measurevalue"></span>
                         </div>
                         <div class="measure">
-                            <p class="measuretitle">Belly</p>
-                            <input type="range" min="70" max="140" value="92" class="slider" id="bellyWidth"><span id="bellyWidthvalue" class="measurevalue"></span>
-                        </div>
-                        <div class="measure">
-                            <p class="measuretitle">Waistband to Belly</p>
-                            <input type="range" min="1" max="30" value="10" class="slider" id="bellyLineDepth"><span id="bellyLineDepthvalue" class="measurevalue"></span>
+                            <p class="measuretitle">Sway Back Adjustment</p>
+                            <input type="range" min="0" max="2" value="0" class="slider" id="swayback"><span id="swaybackvalue" class="measurevalue"></span>
                         </div>
                         <div class="measure">
                             <p class="measuretitle">Skirt Length</p>
                             <input type="range" min="50" max="90" value="70" class="slider" id="skirtLength"><span id="skirtLengthvalue" class="measurevalue"></span>
-                        </div>
-                        <div id="downloadbuttons" class="infocontainer">
-                            <p id="downloadlink"></p>
-                            <button class="downloadPDF" attr-size="a4">Create A4 PDF</button> 
-                            <button class="downloadPDF" attr-size="letter">Create Letter PDF</button>
-                            <button class="downloadPDF" attr-size="a0">Create A0 PDF</button>  
-                        </div>
-                        <div id="downloadinfo" class="infocontainer">
-                            <p>Generating PDF Pattern...</p>  
                         </div>
                     </div>                      
                 </div>

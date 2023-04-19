@@ -1,17 +1,27 @@
 body {
 	font-family: 'Roboto', sans-serif;
+	color: white;
+	background-color: black;
 }
 
 #pattern {
-	margin-top:30px;
 	fill:none;
-	stroke-width:1px;
+	stroke-width:0.5px;
 	stroke:#ddd;
+}
+
+#pattern svg {
+	width: 80%;
+}
+
+#pattern_0_container {
+	stroke:#ddd;
+	opacity: 0.5;
 }
 
 #pattern .grouppattern {
 	fill:none;
-	stroke-width:2px;
+	stroke-width:1.5px;
 	stroke:#0024ff;
 }
 
@@ -28,7 +38,7 @@ body {
 }
 
 .measuretitle {
-	font-size:1.5em;
+	font-size:1.25em;
 }
 
 .measure {
@@ -41,7 +51,7 @@ body {
 
 .measurevalue {
 	padding-left:15px;
-	font-size:1.5em;
+	font-size:1.25em;
 }
 
 button {
@@ -64,4 +74,16 @@ p {
 #downloadlink a {
 	color:black;
 	text-decoration: underline;
+}
+
+.slider {
+   accent-color: #999;
+}
+
+#layplan {
+	margin-top: 30px;
+}
+
+#layplan img {
+	border : 1px solid #fff
 }
