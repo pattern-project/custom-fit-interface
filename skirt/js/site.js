@@ -107,7 +107,7 @@ function initSliders(){
 		let value = ($(this).val()) +'cm';
 	  	$(id).html(value);
 	});
-	sliders.on('mouseup',function(){
+	sliders.on('mouseup ontouchend',function(){
 		updatePattern();
 	});
 }
